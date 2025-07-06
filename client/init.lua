@@ -1,18 +1,18 @@
 local function NPCSpawn()
-local PlayerPed = PlayerPedId()
+local PlayerPedID = PlayerPedId()
 local PlayerCoords = GetEntityCoords(PlayerPed)
 local PlayerHeading = GetEntityHeading(PlayerPed)
 local distance3 = 3
 local NPCcoords = PlayerCoords+vec3(distance3, distance3, .5)
-local PedModel = `a_m_o_soucent_03`
+local PedHash = `a_m_o_soucent_03`
 
-    RequestModel(PedModel)
-    while not HasModelLoaded(PedModel) do
+    RequestModel(PedHash)
+    while not HasModelLoaded(PedHash) do
         Wait(10)
     end
 
-local function ConfigurePed(PedModel, playerPed)
-    TaskFollowToOffsetOfEntity(PedModel, playerPed, 0.0, 0.0, 0.0, 2.0, -1, 3.0, true)
+local function ConfigurePed(PedModel, PlayerPed)
+    TaskFollowToOffsetOfEntity(PedModel, PlayerPed, 0.0, 0.0, 0.0, 2.0, -1, 3.0, true)
     SetPedFleeAttributes(PedModel, 0, false)
     SetPedCombatAttributes(PedModel, 46, false)
     SetPedCanBeTargetted(PedModel, false)
@@ -93,8 +93,8 @@ SetBlockingOfNonTemporaryEvents(PedTen, true)
 end */
 
     for i = 1, 10 do
-        local ped = CreatePed(4, PedModel, NPCcoords.z, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
-        ConfigurePed(PedModel, PlayerPed)
+        local ped = CreatePed(4, PedHash, NPCcoords.z, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
+        ConfigurePed(PedHash, PlayerPedID)
     end
 end
 
