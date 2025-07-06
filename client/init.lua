@@ -11,7 +11,16 @@ local PedModel = `a_m_o_soucent_03`
         Wait(10)
     end
 
-local PedOne = CreatePed(4, PedModel, NPCcoords.x, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
+local function ConfigurePed(PedModel, playerPed)
+    TaskFollowToOffsetOfEntity(PedModel, playerPed, 0.0, 0.0, 0.0, 2.0, -1, 3.0, true)
+    SetPedFleeAttributes(PedModel, 0, false)
+    SetPedCombatAttributes(PedModel, 46, false)
+    SetPedCanBeTargetted(PedModel, false)
+    SetBlockingOfNonTemporaryEvents(PedModel, true)
+end
+
+
+/* local PedOne = CreatePed(4, PedModel, NPCcoords.x, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
 local PedTwo = CreatePed(4, PedModel, NPCcoords.x, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
 local PedThree = CreatePed(4, PedModel, NPCcoords.x, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
 local PedFour = CreatePed(4, PedModel, NPCcoords.x, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
@@ -81,6 +90,12 @@ SetPedFleeAttributes(PedTen, 0, false)
 SetPedCombatAttributes(PedTen, 46, false)
 SetPedCanBeTargetted(PedTen, false)
 SetBlockingOfNonTemporaryEvents(PedTen, true)
+end */
+
+    for i = 1, 10 do
+        local ped = CreatePed(4, PedModel, NPCcoords.z, NPCcoords.y, NPCcoords.z, PlayerHeading, true, false)
+        ConfigurePed(PedModel, PlayerPed)
+    end
 end
 
 local function ScriptStarted()
